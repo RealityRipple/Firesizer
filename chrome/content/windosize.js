@@ -18,14 +18,14 @@ var windosize = {
  },
  SaveCurrent: function()
  {
-  let width  = window.outerWidth  + '';
-  let height = window.outerHeight + '';
+  var width  = window.outerWidth  + '';
+  var height = window.outerHeight + '';
   windosize_common.AddDimension(width, height);
  },
  UpdateStatus: function()
  {
-  let width  = window.outerWidth  + '';
-  let height = window.outerHeight + '';
+  var width  = window.outerWidth  + '';
+  var height = window.outerHeight + '';
   document.getElementById('windosize-statuspanel').label = width + 'x' + height;
  },
  ResizeWindow: function(width, height)
@@ -40,34 +40,34 @@ var windosize = {
  },
  ShowMenu: function()
  {
-  let labels = windosize_common.LoadFromPrefs();
-  let statusmenu = document.getElementById('windosize-statuspanel-menu');
+  var labels = windosize_common.LoadFromPrefs();
+  var statusmenu = document.getElementById('windosize-statuspanel-menu');
   while(statusmenu.childNodes.length > 0)
   {
    statusmenu.removeChild(statusmenu.childNodes[0]);
   }
-  for(let i = 0; i < labels.length; i++)
+  for(var i = 0; i < labels.length; i++)
   {
-   let wxh = labels[i].split('x');
-   let width  = Number(wxh[0]);
-   let height = Number(wxh[1]);
-   let menuitem = document.createElement('menuitem');
+   var wxh = labels[i].split('x');
+   var width  = Number(wxh[0]);
+   var height = Number(wxh[1]);
+   var menuitem = document.createElement('menuitem');
    menuitem.setAttribute('label', labels[i]);
    menuitem.setAttribute('id',    labels[i]);
    menuitem.setAttribute('value', 'windosize-menuitem');
    menuitem.setAttribute('oncommand', 'windosize.ResizeWindow(' + width + ',' + height + ')');
    statusmenu.appendChild(menuitem);
   }
-  let separator = document.createElement('menuseparator');
+  var separator = document.createElement('menuseparator');
   separator.setAttribute('id', 'windosize-statuspanel-separator');
   statusmenu.appendChild(separator);
-  let customize = document.createElement('menuitem');
+  var customize = document.createElement('menuitem');
   customize.setAttribute('id', 'windosize-statuspanel-customize');
   customize.setAttribute('label', windosize.localeCustomize);
   customize.setAttribute('accesskey', windosize.localeCustomKey);
   customize.setAttribute('oncommand', 'windosize.Customize()');
   statusmenu.appendChild(customize);
-  let savecurrent = document.createElement('menuitem');
+  var savecurrent = document.createElement('menuitem');
   savecurrent.setAttribute('id', 'windosize-statuspanel-savecurrent');
   savecurrent.setAttribute('label', windosize.localeSave);
   savecurrent.setAttribute('accesskey', windosize.localeSaveKey);
@@ -76,8 +76,8 @@ var windosize = {
  },
  LoadLocaleStrings: function()
  {
-  let bundleMgr = Components.classes['@mozilla.org/intl/stringbundle;1'].getService(Components.interfaces.nsIStringBundleService);
-  let windosizeStrBundle = bundleMgr.createBundle('chrome://windosize/locale/windosize.properties');
+  var bundleMgr = Components.classes['@mozilla.org/intl/stringbundle;1'].getService(Components.interfaces.nsIStringBundleService);
+  var windosizeStrBundle = bundleMgr.createBundle('chrome://windosize/locale/windosize.properties');
   windosize.localeDimensions = windosizeStrBundle.GetStringFromName('windosizeInvalidDimensions');
   windosize.localeCustomize  = windosizeStrBundle.GetStringFromName('windosizeCustomize');
   windosize.localeCustomKey = windosizeStrBundle.GetStringFromName('windosizeCustomizeKey');
